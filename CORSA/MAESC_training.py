@@ -400,6 +400,13 @@ def parse_args():
                         type=int,
                         default=0,
                         )
+    parser.add_argument('--img_path',
+                        default=None,
+                        type=str,
+                        help='path to the folder containing Twitter images '
+                             '(twitter2015_images or twitter2017_images). '
+                             'If not provided, defaults to the built-in path '
+                             'for the selected dataset.')
     args = parser.parse_args()
     if args.encoder=='trc':
         args.trc_on=True
@@ -416,11 +423,13 @@ def parse_args():
     if args.checkpoint is None and args.model_config is None:
         raise ValueError(
             '--model_config and --checkpoint cannot be empty at the same time')
-    args.img_path=''
-    if args.dataset[0][0]=='twitter15':
-        args.img_path='/data/liuxj/aspect_sentiment_detect/Twitter_data//twitter2015_images'
-    elif args.dataset[0][0]=='twitter17':
-        args.img_path='/data/liuxj/aspect_sentiment_detect/Twitter_data//twitter2017_images'
+    if args.img_path is None:
+        if args.dataset[0][0] == 'twitter15':
+            args.img_path = '/data/liuxj/aspect_sentiment_detect/Twitter_data/twitter2015_images'
+        elif args.dataset[0][0] == 'twitter17':
+            args.img_path = '/data/liuxj/aspect_sentiment_detect/Twitter_data/twitter2017_images'
+        else:
+            args.img_path = ''
     return args
 
 

@@ -116,7 +116,8 @@ def main(rank, args):
 
     # resnet
     net = getattr(resnet, 'resnet152')()
-    net.load_state_dict(torch.load('/home/zhouru/ABSA4/src/resnet/resnet152.pth'))
+    resnet_path = args.resnet_path if args.resnet_path else '/home/zhouru/ABSA4/src/resnet/resnet152.pth'
+    net.load_state_dict(torch.load(resnet_path))
     img_encoder = myResnet(net, True, device)
     img_encoder.to(device)
     args.checkpoint_path=checkpoint_path
@@ -346,6 +347,11 @@ def parse_args():
     parser.add_argument('--gcn_on',
                         action='store_true',
                         help=' ')
+    parser.add_argument('--resnet_path',
+                        default=None,
+                        type=str,
+                        help='path to the pretrained resnet152.pth file used '
+                             'for image encoding during TRC pre-training')
     # parser.set_defau  lts()
     args = parser.parse_args()
 

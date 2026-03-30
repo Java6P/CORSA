@@ -8,4 +8,5 @@ python3.7 pretrain_trc.py \
       --mrm_loss_type KL \
       --task pretrain \
       --checkpoint ./checkpoint \
+      --resnet_path ./src/resnet/resnet152.pth \
       --rank 3
