@@ -17,6 +17,7 @@ do
           --checkpoint /data/liuxj/aspect_sentiment_detect/pretrain_checkpoint/pretrain/pytorch_model.bin \
           --rank 2 \
           --trc_pretrain_file /data/liuxj/aspect_sentiment_detect/pretrain_checkpoint/trc_pretrain/pytorch_model.bin \
+          --img_path ./data/twitter2015_images \
           --nn_attention_on \
           --nn_attention_mode 0 \
           --trc_on \
